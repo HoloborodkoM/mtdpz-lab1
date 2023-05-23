@@ -40,7 +40,7 @@ const interactive = () => {
 
    function getForInteractive(data) {
       
-      const enteringValue = data.toString().trim().replace(/,/g, '.');
+      const enteringValue = data.toString().trim();
       const value = Number(enteringValue);
 
       if (Number.isNaN(value) || enteringValue === '') {
@@ -98,7 +98,7 @@ const nonInteractive = () => {
          throw new Error("No such file or path!!!");
       }
 
-      const result = contentFile.trim().replace(/,/g, '.').split(' ');
+      const result = contentFile.trim().split(' ');
       const fileExtension = path.extname(filePath);
 
       if (fileExtension !== '.txt') {
