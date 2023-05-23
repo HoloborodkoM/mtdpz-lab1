@@ -31,20 +31,32 @@ const interactive = () => {
    
    function parametersInitialization() {
       process.stdout.write(`${parameters[index]} = `);
-      index++;
    }
 
    process.stdin.on('data', getForInteractive);
 
    function getForInteractive(data) {
       
-      const value = data.toString().trim();
-      enteredParameters[parameters[index]] = value;
-      console.log(enteredParameters);
+      const enteringValue = data.toString().trim();
+      const value = parseFloat(enteringValue);
+
+      if (Number.isNaN(value)) {
+
+         console.log(`Error. Expected a valid real number, got ${enteringValue} instead!!!`);
+         console.log("Try input parameter again:");
+
+      } else {
+
+         enteredParameters[parameters[index]] = value;
+         index++;
+         console.log(enteredParameters);
+
+      }
    
       if (parameters.length > index) {
          parametersInitialization();
       } else {
+         
          console.log("Done:", enteredParameters);
          process.exit();
       }
