@@ -98,6 +98,10 @@ const nonInteractive = () => {
       }
 
       const result = contentFile.trim().split(' ');
+
+      if (result.length !== parameters.length) {
+         throw new Error("Error. File does not match the conditions!!!");
+      }
       
       for (const checkParameter of result) {
 
