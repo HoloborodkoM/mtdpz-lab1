@@ -3,8 +3,6 @@
 console.log("Which mode do you wanna use?");
 process.stdout.write("Interactive or non-interactive (press 1|2 respectively): ");
 
-let index = 0;
-
 process.stdin.on('data', checkAnswer);
 
 function checkAnswer(answer) {
@@ -12,7 +10,7 @@ function checkAnswer(answer) {
    const enteringValue = answer.toString().trim();
 
    if (enteringValue === '1') {
-      interactive(enteringValue);
+      interactive();
    } else if(enteringValue === '2') {
       nonInteractive();
    } else {
@@ -21,29 +19,38 @@ function checkAnswer(answer) {
       process.stdout.write("Interactive or non-interactive (press 1|2 respectively): ");
 
    }
-
 }
 
-const interactive = (value) => {
-     
+const interactive = () => {
+
    const enteredParameters = {};
    const parameters = ['a', 'b', 'c'];
+   let index = 0;
 
+   process.stdin.removeListener('data', checkAnswer);
+   
    function parametersInitialization() {
       process.stdout.write(`${parameters[index]} = `);
       index++;
    }
-   
-   enteredParameters[parameters[index]] = value;
-   console.log(enteredParameters);
 
-   if (parameters.length > index) {
-      parametersInitialization();
-   } else {
-      console.log("Done:", enteredParameters);
-      process.exit();
+   process.stdin.on('data', getForInteractive);
+
+   function getForInteractive(data) {
+      
+      const value = data.toString().trim();
+      enteredParameters[parameters[index]] = value;
+      console.log(enteredParameters);
+   
+      if (parameters.length > index) {
+         parametersInitialization();
+      } else {
+         console.log("Done:", enteredParameters);
+         process.exit();
+      }
    }
-     
+
+   parametersInitialization()
 }
 
 const nonInteractive = () => {
