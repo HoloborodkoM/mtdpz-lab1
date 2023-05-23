@@ -89,7 +89,14 @@ const nonInteractive = () => {
    function getForNonInteractive(data) {
 
       const filePath = data.toString().trim();
-      const contentFile = fs.readFileSync(filePath, 'utf8');
+      let contentFile;
+
+      try {
+         contentFile = fs.readFileSync(filePath, 'utf8');
+      } catch {
+         throw new Error("No such file or path!!!");
+      }
+
       const result = contentFile.trim().split(' ');
       
       for (const checkParameter of result) {
