@@ -1,6 +1,7 @@
 "use strict"
 
 const fs = require('fs');
+const path = require('path');
 
 console.log("Which mode do you wanna use?");
 process.stdout.write("Interactive or non-interactive (press 1|2 respectively): ");
@@ -98,6 +99,11 @@ const nonInteractive = () => {
       }
 
       const result = contentFile.trim().split(' ');
+      const fileExtension = path.extname(filePath);
+
+      if (fileExtension !== '.txt') {
+         throw new Error("Error. Invalid file format!!!");
+      }
 
       if (result.length !== parameters.length) {
          throw new Error("Error. File does not match the conditions!!!");
