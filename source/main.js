@@ -57,7 +57,6 @@ const interactive = () => {
 
          enteredParameters[parameters[index]] = value;
          index++;
-         console.log(enteredParameters);
 
       }
    
@@ -65,7 +64,8 @@ const interactive = () => {
          parametersInitialization();
       } else {
 
-         console.log("Done:", enteredParameters);
+         const { a, b, c } = getParams(enteredParameters);
+         console.log(a, b, c);
          process.exit();
       }
    }
@@ -121,13 +121,13 @@ const nonInteractive = () => {
 
          enteredParameters[parameters[index]] = value;
          index++;
-         console.log(enteredParameters);
 
       }
       
       if (parameters.length === index) {
 
-         console.log("Done:", enteredParameters);
+         const { a, b, c } = getParams(enteredParameters);
+         console.log(a, b, c);
          process.exit();
 
       }
@@ -136,4 +136,12 @@ const nonInteractive = () => {
    }
 
    parametersForFile()
+}
+
+const getParams = (object) => {
+   const a = object.a;
+   const b = object.b;
+   const c = object.c;
+
+   return {a, b, c}
 }
