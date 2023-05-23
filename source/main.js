@@ -38,11 +38,16 @@ const interactive = () => {
    function getForInteractive(data) {
       
       const enteringValue = data.toString().trim();
-      const value = parseFloat(enteringValue);
+      const value = Number(enteringValue);
 
-      if (Number.isNaN(value)) {
+      if (Number.isNaN(value) || enteringValue === '') {
 
          console.log(`Error. Expected a valid real number, got ${enteringValue} instead!!!`);
+         console.log("Try input parameter again:");
+
+      } else if (index === 0 && value === 0) {
+
+         console.log("Error. Parameter 'a' cannot be 0(zero)!!!");
          console.log("Try input parameter again:");
 
       } else {
@@ -56,13 +61,13 @@ const interactive = () => {
       if (parameters.length > index) {
          parametersInitialization();
       } else {
-         
+
          console.log("Done:", enteredParameters);
          process.exit();
       }
    }
 
-   parametersInitialization()
+   parametersInitialization();
 }
 
 const nonInteractive = () => {
