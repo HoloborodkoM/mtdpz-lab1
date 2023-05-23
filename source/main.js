@@ -1,5 +1,7 @@
 "use strict"
 
+const fs = require('fs');
+
 console.log("Which mode do you wanna use?");
 process.stdout.write("Interactive or non-interactive (press 1|2 respectively): ");
 
@@ -71,5 +73,48 @@ const interactive = () => {
 }
 
 const nonInteractive = () => {
-   process.exit();
+
+   const enteredParameters = {};
+   const parameters = ['a', 'b', 'c'];
+   let index = 0;
+
+   process.stdin.removeListener('data', checkAnswer);
+
+   function parametersForFile() {
+      process.stdout.write("Enter name or path file: ");
+   }
+   
+   process.stdin.on('data', getForNonInteractive);
+
+   function getForNonInteractive(data) {
+
+      const filePath = data.toString().trim();
+      const contentFile = fs.readFileSync(filePath, 'utf8');
+      const result = contentFile.trim().split(' ');
+      
+      for (const checkParameter of result) {
+
+      const value = Number(checkParameter);
+
+      if (Number.isNaN(value)) {
+         throw new Error("Error. Invalid value in file!!!");
+      } else {
+
+         enteredParameters[parameters[index]] = value;
+         index++;
+         console.log(enteredParameters);
+
+      }
+      
+      if (parameters.length === index) {
+
+         console.log("Done:", enteredParameters);
+         process.exit();
+
+      }
+
+      }
+   }
+
+   parametersForFile()
 }
