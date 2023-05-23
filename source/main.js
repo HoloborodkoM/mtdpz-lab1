@@ -115,6 +115,8 @@ const nonInteractive = () => {
 
       if (Number.isNaN(value)) {
          throw new Error("Error. Invalid value in file!!!");
+      } else if (index === 0 && value === 0) {
+         throw new Error("Error. Parameter 'a' connot be 0(zero)!!!");
       } else {
 
          enteredParameters[parameters[index]] = value;
