@@ -14,8 +14,9 @@ When this mode is selected, the program allows the user to specify the name of t
 
 1. If you do not have Node.js, install it (my version ```14.13.1```)
 2. Clone repoitory via ```git clone https://github.com/HoloborodkoM/mtpzd-lab1.git``` 
-3. Pull up dependencies ```npm install```
-4. Start application ```node main.js```
+3. Change directory ```cd mtpzd-lab1```
+4. Pull up dependencies ```npm install```
+5. Start application ```node main.js```
 
 ## Work with application
 
