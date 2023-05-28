@@ -13,8 +13,8 @@ When this mode is selected, the program allows the user to specify the name of t
 ## How to start work
 
 1. If you do not have Node.js, install it (my version ```14.13.1```)
-2. Clone repoitory via ```git clone https://github.com/HoloborodkoM/mtpzd-lab1.git``` 
-3. Change directory ```cd mtpzd-lab1```
+2. Clone repository via ```git clone https://github.com/HoloborodkoM/mtpzd-lab1.git``` 
+3. Change directory ```cd mtdpz-lab1```
 4. Pull up dependencies ```npm install```
 5. Start application ```node main.js```
 
